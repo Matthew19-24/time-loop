@@ -10,6 +10,18 @@ public class GadgetSpawner : MonoBehaviour
     void Start()
     {
         SpawnGadgets();
+
+        // Assign the gadgetPrefab to the Player script
+        Player player = FindObjectOfType<Player>();
+        if (player != null)
+        {
+            player.gadgetPrefab = gadgetPrefab;
+            Debug.Log("Gadget prefab assigned to Player.");
+        }
+        else
+        {
+            Debug.LogError("Player script not found.");
+        }
     }
 
     void SpawnGadgets()
@@ -30,6 +42,11 @@ public class GadgetSpawner : MonoBehaviour
                 gadgetComponent.spawnLocation = randomPosition;
                 // Set gadgetValue logic here
                 gadgetComponent.gadgetValue = 1;
+                Debug.Log("Gadget spawned at position: " + randomPosition);
+            }
+            else
+            {
+                Debug.LogError("Gadget component not found on instantiated gadget.");
             }
         }
     }
