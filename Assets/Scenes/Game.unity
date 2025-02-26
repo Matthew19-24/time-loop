@@ -1410,6 +1410,9 @@ MonoBehaviour:
   gadgetCount: 5
   spawnAreaMin: {x: -22, y: -14}
   spawnAreaMax: {x: 22, y: 14}
+  overlapLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1248143746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,7 +1727,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -1876,7 +1879,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.39
+  m_Radius: 0.93
 --- !u!212 &1692162788
 SpriteRenderer:
   m_ObjectHideFlags: 0

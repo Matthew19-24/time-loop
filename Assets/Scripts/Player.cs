@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     private Vector3 initialPosition;
     private Vector2[] initialGadgetPositions;
+    private int[] initialGadgetValues;
     public GameObject gadgetPrefab; // Assign in Inspector
 
     public TextMeshPro scoreText; // Assign in Inspector
@@ -29,6 +30,9 @@ public class Player : MonoBehaviour
     {
         initialPosition = transform.position;
         timer = timerDuration;
+        winScore = Random.Range(5, 16); // Generate a random number between 5 and 15 for winScore
+        Debug.Log("Win score set to: " + winScore);
+
         if (timerText == null)
         {
             Debug.LogError("Timer TextMeshPro component not assigned.");
@@ -56,22 +60,24 @@ public class Player : MonoBehaviour
             UpdateGoalText();
         }
 
-        // Delay the initialization of initial gadget positions
-        Invoke("InitializeGadgetPositions", 0.1f);
+        // Delay the initialization of initial gadget positions and values
+        Invoke("InitializeGadgetPositionsAndValues", 0.1f);
     }
 
-    void InitializeGadgetPositions()
+    void InitializeGadgetPositionsAndValues()
     {
-        // Store initial gadget positions
+        // Store initial gadget positions and values
         GadgetSpawner gadgetSpawner = FindObjectOfType<GadgetSpawner>();
         if (gadgetSpawner != null)
         {
             initialGadgetPositions = new Vector2[gadgetSpawner.gadgetCount];
+            initialGadgetValues = new int[gadgetSpawner.gadgetCount];
             GameObject[] gadgets = GameObject.FindGameObjectsWithTag("Gadget");
             Debug.Log("Gadgets found: " + gadgets.Length);
             for (int i = 0; i < gadgetSpawner.gadgetCount; i++)
             {
                 initialGadgetPositions[i] = gadgets[i].transform.position;
+                initialGadgetValues[i] = gadgets[i].GetComponent<Gadget>().gadgetValue;
             }
             Debug.Log("Initial gadget positions: " + initialGadgetPositions.Length);
         }
@@ -175,7 +181,7 @@ public class Player : MonoBehaviour
         Debug.Log("Existing gadgets destroyed.");
         Debug.Log("Initial gadget positions: " + initialGadgetPositions.Length);
 
-        // Respawn gadgets at initial positions
+        // Respawn gadgets at initial positions with initial values
         for (int i = 0; i < initialGadgetPositions.Length; i++)
         {
             Debug.Log("Respawn gadgets loop starting.");
@@ -190,8 +196,8 @@ public class Player : MonoBehaviour
                 if (gadgetComponent != null)
                 {
                     gadgetComponent.spawnLocation = initialGadgetPositions[i];
-                    gadgetComponent.gadgetValue = 1; // Set the same value as before
-                    Debug.Log("Gadget component assigned at position: " + initialGadgetPositions[i]);
+                    gadgetComponent.gadgetValue = initialGadgetValues[i]; // Set the initial value
+                    Debug.Log("Gadget component assigned at position: " + initialGadgetPositions[i] + " with value: " + initialGadgetValues[i]);
                 }
                 else
                 {
