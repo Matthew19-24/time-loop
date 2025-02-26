@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject gadgetPrefab; // Assign in Inspector
 
     public TextMeshPro scoreText; // Assign in Inspector
+    public TextMeshPro goalText; // Assign in Inspector
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,6 +45,15 @@ public class Player : MonoBehaviour
         else
         {
             UpdateScoreText();
+        }
+
+        if (goalText == null)
+        {
+            Debug.LogError("Goal TextMeshPro component not assigned.");
+        }
+        else
+        {
+            UpdateGoalText();
         }
 
         // Delay the initialization of initial gadget positions
@@ -128,6 +138,14 @@ public class Player : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = "Gadget # " + score.ToString();
+        }
+    }
+
+    void UpdateGoalText()
+    {
+        if (goalText != null)
+        {
+            goalText.text = "Goal Gadget # " + winScore.ToString();
         }
     }
 
