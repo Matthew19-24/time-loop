@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     private Vector2[] initialGadgetPositions;
     public GameObject gadgetPrefab; // Assign in Inspector
 
+    public TextMeshPro scoreText; // Assign in Inspector
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,6 +35,15 @@ public class Player : MonoBehaviour
         else
         {
             UpdateTimerText();
+        }
+
+        if (scoreText == null)
+        {
+            Debug.LogError("Score TextMeshPro component not assigned.");
+        }
+        else
+        {
+            UpdateScoreText();
         }
 
         // Delay the initialization of initial gadget positions
@@ -89,6 +100,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Gadget")
         {
             score += collision.gameObject.GetComponent<Gadget>().gadgetValue;
+            UpdateScoreText();
 
             Destroy(collision.gameObject);
 
@@ -111,6 +123,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "Gadget # " + score.ToString();
+        }
+    }
+
     void ResetGame()
     {
         Debug.Log("Resetting game...");
@@ -121,6 +141,7 @@ public class Player : MonoBehaviour
 
         // Reset score
         score = 0;
+        UpdateScoreText();
         Debug.Log("Score reset to: " + score);
 
         // Reset timer
