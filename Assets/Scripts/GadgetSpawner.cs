@@ -21,16 +21,16 @@ public class GadgetSpawner : MonoBehaviour
             Debug.Log("Gadget prefab assigned to Player.");
 
             // Generate a random number for gadgetCount based on winScore
-            gadgetCount = Random.Range(player.winScore, player.winScore * 2 + 1);
+            gadgetCount = Random.Range(Player.winScore, Player.winScore * 2 + 1);
             Debug.Log("Gadget count set to: " + gadgetCount);
 
             // Set minValue and maxValue based on winScore
-            minValue = -player.winScore;
-            maxValue = player.winScore + 5;
+            minValue = 0;
+            maxValue = Player.winScore + 2;
             Debug.Log("Min value set to: " + minValue + ", Max value set to: " + maxValue);
 
             // Generate gadget values
-            List<int> gadgetValues = GenerateGadgetValues(player.winScore);
+            List<int> gadgetValues = GenerateGadgetValues(Player.winScore);
             SpawnGadgets(gadgetValues);
         }
         else

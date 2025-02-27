@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Player : MonoBehaviour
     int score = 0;
     public GameObject winText;
 
-    public int winScore;
+    public static int winScore = 5; // Make winScore static to persist across scene reloads
 
     public float timerDuration; // Duration of the timer in seconds
     private float timer;
@@ -30,7 +31,6 @@ public class Player : MonoBehaviour
     {
         initialPosition = transform.position;
         timer = timerDuration;
-        winScore = Random.Range(5, 16); // Generate a random number between 5 and 15 for winScore
         Debug.Log("Win score set to: " + winScore);
 
         if (timerText == null)
@@ -62,6 +62,12 @@ public class Player : MonoBehaviour
 
         // Delay the initialization of initial gadget positions and values
         Invoke("InitializeGadgetPositionsAndValues", 0.1f);
+
+        // Add click listener to winText
+        if (winText != null)
+        {
+            winText.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(RestartGame);
+        }
     }
 
     void InitializeGadgetPositionsAndValues()
@@ -213,5 +219,11 @@ public class Player : MonoBehaviour
         // Update timer text
         UpdateTimerText();
         Debug.Log("Game reset: Player position, score, timer, and gadgets have been reset.");
+    }
+
+    void RestartGame()
+    {
+        winScore += 1; // Increment winScore by 1
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
 }
