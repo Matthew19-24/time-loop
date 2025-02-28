@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Gadget # " + score.ToString();
+            scoreText.text = score.ToString();
         }
     }
 
@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
     {
         if (goalText != null)
         {
-            goalText.text = "Goal Gadget # " + winScore.ToString();
+            goalText.text = winScore.ToString();
         }
     }
 
