@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
     {
         if (timerText != null)
         {
-            timerText.text = "Time Left: " + Mathf.Ceil(timer).ToString();
+            timerText.text = Mathf.Ceil(timer).ToString();
         }
     }
 
