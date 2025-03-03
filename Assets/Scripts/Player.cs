@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Win score: " + winScore);
         if (timer > 0)
         {
             timer -= Time.deltaTime;
