@@ -91,4 +91,9 @@ public class Character : MonoBehaviour
         runUp.SetActive(activeObject == runUp);
         lastActiveState = activeObject;
     }
+
+    public void ResetGame(){
+        transform.position = initialPosition;
+        // Add other logic here for Reset game
+    }
 }
