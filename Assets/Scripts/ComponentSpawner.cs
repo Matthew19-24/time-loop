@@ -8,18 +8,17 @@ public class ComponentSpawner : MonoBehaviour
     public Vector2 spawnAreaMax;    // Top-right corner of spawn area
     private int minValue;           // Minimum value for gadget
     private int maxValue;           // Maximum value for gadget
-    public List<GameObject> components;
+    public static List<GadgetInfo> gadgetsInfo; // List to store gadget info
     public GameObject character;
 
     public Sprite[] sprites;
     private int componentCount;
 
-
-void Start()
+    void Start()
     {
         // Generate a random number for gadgetCount based on winScore
-        int min = Player.winScore;
-        int max = Player.winScore * 2 + 1;
+        int min = Character.winScore;
+        int max = Character.winScore * 2 + 1;
 
         if (min < 10){
             min = 10;
@@ -33,14 +32,14 @@ void Start()
 
         // Set minValue and maxValue based on winScore
         minValue = 1;
-        maxValue = Player.winScore + 2;
+        maxValue = Character.winScore + 2;
 
         // Generate gadget values
-        List<int> componentValues = GenerateComponentValues(Player.winScore);
+        List<int> componentValues = GenerateComponentValues(Character.winScore);
         SpawnComponents(componentValues);
     }
 
-List<int> GenerateComponentValues(int winScore)
+    List<int> GenerateComponentValues(int winScore)
     {
         List<int> values = new List<int>();
         for (int i = 0; i < componentCount - 1; i++)
@@ -82,7 +81,7 @@ List<int> GenerateComponentValues(int winScore)
 
     void SpawnComponents(List<int> componentValues)
     {
-        components = new List<GameObject>(); // Initialize the components list
+        gadgetsInfo = new List<GadgetInfo>(); // Initialize the gadgets info list
 
         for (int i = 0; i < componentCount; i++)
         {
@@ -104,9 +103,11 @@ List<int> GenerateComponentValues(int winScore)
 
                 // Randomly assign one of the sprites from the sprite array
                 SpriteRenderer spriteRenderer = gadgetComponent.GetComponent<SpriteRenderer>();
+                Sprite assignedSprite = null;
                 if (spriteRenderer != null && sprites.Length > 0)
                 {
-                    spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
+                    assignedSprite = sprites[Random.Range(0, sprites.Length)];
+                    spriteRenderer.sprite = assignedSprite;
                 }
                 else
                 {
@@ -115,6 +116,9 @@ List<int> GenerateComponentValues(int winScore)
 
                 // Check for collisions and respawn if necessary
                 CheckAndRespawn(newComponent);
+
+                // Add gadget info to the list
+                gadgetsInfo.Add(new GadgetInfo(randomPosition, componentValues[i], assignedSprite));
             }
             else
             {
@@ -140,14 +144,24 @@ List<int> GenerateComponentValues(int winScore)
                 newComponent.SetActive(true);
                 CheckAndRespawn(newComponent); // Recursively check the new component
             }
-            else
-            {
-                components.Add(component); // Add the component to the list
-            }
         }
         else
         {
             Debug.LogError("BoxCollider not found on component.");
         }
+    }
+}
+
+public class GadgetInfo
+{
+    public Vector2 spawnLocation;
+    public int componentValue;
+    public Sprite sprite;
+
+    public GadgetInfo(Vector2 spawnLocation, int componentValue, Sprite sprite)
+    {
+        this.spawnLocation = spawnLocation;
+        this.componentValue = componentValue;
+        this.sprite = sprite;
     }
 }
