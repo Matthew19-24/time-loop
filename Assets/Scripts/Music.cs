@@ -3,6 +3,7 @@ using UnityEngine;
 public class Music : MonoBehaviour
 {
     public AudioSource[] musicObjects; // Array for the 'Music' objects
+    private AudioSource currentMusic;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,7 +14,8 @@ public class Music : MonoBehaviour
         if (musicPref == 1) // music == true
         {
             int randomIndex = Random.Range(0, musicObjects.Length);
-            musicObjects[randomIndex].Play();
+            currentMusic = musicObjects[randomIndex];
+            currentMusic.Play();
         }
         else // music == false
         {

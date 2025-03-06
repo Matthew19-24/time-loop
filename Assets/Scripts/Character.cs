@@ -1,6 +1,10 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; // Add this for Image
+using System.Collections;
+using Unity.VisualScripting;
+using System.Collections.Generic; // Add this for IEnumerator
 
 public class Character : MonoBehaviour
 {
@@ -14,6 +18,14 @@ public class Character : MonoBehaviour
     private GameObject idleDown, idleSide, idleUp, runDown, runSide, runUp;
     private GameObject lastActiveState;
     public AudioSource runningSound; // Variable for the running sound effect
+    public AudioSource resetSound; 
+    public GameObject music;
+    public Image fadeImage; // Assign a UI Image in the Inspector for fading
+    public GameObject building; // Assign the Building object in the Inspector
+    public int winScore; // Assign the win score in the Inspector
+    public TextMeshProUGUI winText; // Assign the score text in the Inspector
+    private List<GameObject> inventory = new List<GameObject>();
+    public AudioSource pickup; // Add this variable for the pickup sound effect
 
     void Start()
     {
@@ -27,6 +39,9 @@ public class Character : MonoBehaviour
         runUp = body.Find("run_up").gameObject;
         SetActiveState(idleDown);
         lastActiveState = idleDown;
+
+        // Set the win score text
+        winText.text = winScore.ToString();
     }
 
     void FixedUpdate()
@@ -92,8 +107,30 @@ public class Character : MonoBehaviour
         lastActiveState = activeObject;
     }
 
-    public void ResetGame(){
+
+    public void ResetGame()
+    {        
+        resetSound.Play();
+        Debug.Log("ResetGame called");
         transform.position = initialPosition;
         // Add other logic here for Reset game
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Gadget")
+        {
+            inventory.Add(collision.gameObject);
+            
+            Destroy(collision.gameObject);
+
+            // Play the pickup sound if Music is set to true
+            int musicPref = PlayerPrefs.GetInt("Sound", 1); // Default to 1 (true) if not set
+            if (musicPref == 1 && pickup != null)
+            {
+                pickup.Play();
+            }
+        }
+    }
+
 }

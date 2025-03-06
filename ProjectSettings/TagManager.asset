@@ -9,10 +9,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Blackout
   - Water
   - UI
-  - 
+  - Blackout2
   - 
   - 
   - 
@@ -42,14 +42,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UI
-    uniqueID: 127953741
-    locked: 0
   - name: Building
     uniqueID: 1814094015
     locked: 0
+  - name: Component
+    uniqueID: 621426209
+    locked: 0
   - name: Character
     uniqueID: 309962807
+    locked: 0
+  - name: UI
+    uniqueID: 127953741
+    locked: 0
+  - name: Blackout
+    uniqueID: 4041398389
     locked: 0
   m_RenderingLayers:
   - Default

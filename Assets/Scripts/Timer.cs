@@ -32,7 +32,6 @@ public class Timer : MonoBehaviour
     {
         // Reset player position in Character script
         character.GetComponent<Character>().ResetGame();
-
         timer = timerDuration;
         UpdateTimerText();
     }
