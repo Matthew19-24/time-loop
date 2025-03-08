@@ -29,4 +29,5 @@ public class RandomFloor : MonoBehaviour
         currentIndex = newIndex;
         spriteRenderer.sprite = floorSprites[currentIndex];
     }
+    
 }

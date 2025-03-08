@@ -24,6 +24,8 @@ public class Character : MonoBehaviour
     public GameObject building; // Assign the Building object in the Inspector
     public static int winScore = 7; // Assign the win score in the Inspector
     public TextMeshProUGUI winText; // Assign the score text in the Inspector
+    public TextMeshPro winText2;
+    public TextMeshProUGUI winTextDoorUI;
     public static List<GameObject> inventory = new List<GameObject>();
     public AudioSource pickup; // Add this variable for the pickup sound effect
     public GameObject componentPrefab;
@@ -59,6 +61,8 @@ public class Character : MonoBehaviour
 
         // Set the win score text
         winText.text = winScore.ToString();
+        winText2.text = winScore.ToString();
+        winTextDoorUI.text = winScore.ToString();
     }
 
     void FixedUpdate()
