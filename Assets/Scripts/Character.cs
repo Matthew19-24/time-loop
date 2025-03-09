@@ -30,6 +30,8 @@ public class Character : MonoBehaviour
     public AudioSource pickup; // Add this variable for the pickup sound effect
     public GameObject componentPrefab;
     public GameObject collapseButton;
+    public GameObject doorTrigger;
+    public GameObject plusTrigger;
 
 
     [System.Obsolete]
@@ -145,6 +147,9 @@ public class Character : MonoBehaviour
 
     public void ResetGame()
     {        
+        doorTrigger.GetComponent<DoorTrigger>().CloseDoorUI();
+        plusTrigger.GetComponent<DoorTrigger>().CloseDoorUI();
+
         resetSound.Play();
         Debug.Log("ResetGame called");
         transform.position = initialPosition;

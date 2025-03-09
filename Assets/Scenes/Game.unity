@@ -7729,7 +7729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2459bb49993e73685b6bf8dd2def9263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 90
+  timerDuration: 20
   character: {fileID: 2042318313}
   timerText: {fileID: 1565604654}
 --- !u!1 &627301090
@@ -23168,6 +23168,8 @@ MonoBehaviour:
   pickup: {fileID: 874728336}
   componentPrefab: {fileID: 204856928}
   collapseButton: {fileID: 1518827712}
+  doorTrigger: {fileID: 604561026}
+  plusTrigger: {fileID: 408713766}
 --- !u!114 &2042318320
 MonoBehaviour:
   m_ObjectHideFlags: 0

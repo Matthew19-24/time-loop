@@ -64,7 +64,7 @@ public class DoorTrigger : MonoBehaviour
         }
     }
 
-    void CloseDoorUI()
+    public void CloseDoorUI()
     {
         doorUI.SetActive(false); // Hide the doorUI
         expandButton.SetActive(true); // Show the expandButton
@@ -101,7 +101,10 @@ public class DoorTrigger : MonoBehaviour
             DragDroppableUI dragDroppable = child.GetComponent<DragDroppableUI>();
             if (dragDroppable != null)
             {
-                dragDroppable.ResetPosition();
+                if (dragDroppable.gameObject != null)
+                {
+                    dragDroppable.ResetPosition();
+                }
             }
             ResetDragDroppablePositions(child);
         }

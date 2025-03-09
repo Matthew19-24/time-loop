@@ -128,7 +128,10 @@ public class DragDroppableUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     public void ResetPosition()
     {
-        rectTransform.SetParent(originalParent);
-        rectTransform.anchoredPosition = originalPosition;
+        if (rectTransform != null && originalParent != null)
+        {
+            rectTransform.SetParent(originalParent);
+            rectTransform.anchoredPosition = originalPosition;
+        }
     }
 }

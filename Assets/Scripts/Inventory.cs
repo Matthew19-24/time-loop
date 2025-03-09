@@ -32,11 +32,14 @@ public class Inventory : MonoBehaviour
 
     public void OpenInventory()
     {
-        for(int x = 0; x < inventorySlots.Length; x++)
+        for (int x = 0; x < inventorySlots.Length; x++)
         {
-            inventorySlots[x].SetActive(false);
+            if (inventorySlots[x] != null)
+            {
+                inventorySlots[x].SetActive(false);
+            }
         }
-            
+
         for (int i = 0; i < Character.inventory.Count; i++)
         {
             GameObject inventoryItem = Character.inventory[i];
@@ -80,7 +83,7 @@ public class Inventory : MonoBehaviour
             {
                 Debug.LogError("Inventory item is null.");
             }
-    }
+        }
 
         int musicPref = PlayerPrefs.GetInt("Sound", 1); // Default to 1 (true) if not set
         if (musicPref == 1 && sound != null)
