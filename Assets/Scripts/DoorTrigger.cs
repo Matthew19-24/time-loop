@@ -54,7 +54,7 @@ public class DoorTrigger : MonoBehaviour
         }
     }
 
-    void OpenDoorUI()
+    public void OpenDoorUI()
     {
         doorUI.SetActive(true); // Show the doorUI
         expandButton.SetActive(false); // Hide the expandButton
@@ -81,7 +81,7 @@ public class DoorTrigger : MonoBehaviour
         }
     }
 
-    private void RestoreOriginalStates(Transform parent)
+    public void RestoreOriginalStates(Transform parent)
     {
         foreach (Transform child in parent)
         {

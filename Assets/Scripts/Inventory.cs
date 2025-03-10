@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public AudioSource sound;
     public GameObject[] inventorySlots;
+    public GameObject doorTrigger;
 
     void Start()
     {
@@ -61,6 +63,7 @@ public class Inventory : MonoBehaviour
                             slotGadgetComponent.textMeshUI.text = gadgetComponent.componentValue.ToString();
                             slotGadgetComponent.spawnLocation = gadgetComponent.spawnLocation;
                             inventorySlots[i].SetActive(true);
+                            slotGadgetComponent.componentId = gadgetComponent.componentId;
                         }
                         else
                         {
@@ -106,44 +109,71 @@ public class Inventory : MonoBehaviour
         Debug.Log("Plusinator method started.");
         GameObject[] equationObjects = GameObject.FindGameObjectsWithTag("Equation");
         Debug.Log($"Found {equationObjects.Length} equation objects.");
+        List<GadgetComponent> activeGadgets = new List<GadgetComponent>();
         int sum = 0;
 
         foreach (GameObject equationObject in equationObjects)
         {
             Debug.Log($"Processing equation object: {equationObject.name}");
+
             foreach (Transform child in equationObject.transform)
             {
                 Debug.Log($"Checking child: {child.name}");
-                if (child.CompareTag("Gadget"))
+                if (child.CompareTag("Gadget") && child.gameObject.activeSelf)
                 {
-                    Debug.Log($"Child {child.name} is a Gadget.");
+                    Debug.Log($"Child {child.name} is an active Gadget.");
                     GadgetComponent gadgetComponent = child.GetComponent<GadgetComponent>();
                     if (gadgetComponent != null)
                     {
-                        Debug.Log($"Found GadgetComponent with ID: {gadgetComponent.componentId}");
-                        // Remove the gadget from the main inventory
-                        for (int i = 0; i < Character.inventory.Count; i++)
-                        {
-                            GadgetComponent originalGadgetComponent = Character.inventory[i].GetComponent<GadgetComponent>();
-
-                            if (originalGadgetComponent != null && originalGadgetComponent.componentId == gadgetComponent.componentId)
-                            {
-                                Debug.Log($"Removing GadgetComponent with ID: {originalGadgetComponent.componentId} from Character.inventory at index {i}");
-                                Character.inventory.RemoveAt(i);
-                                break;
-                            }
-                        }
-
-                        // Add the component value to the sum
-                        sum += gadgetComponent.componentValue;
-                        Debug.Log($"Added {gadgetComponent.componentValue} to sum. Current sum: {sum}");
-
-                        // Destroy the gadget component
-                        Debug.Log($"Destroying gadget component: {child.name}");
-                        Destroy(child.gameObject);
+                        activeGadgets.Add(gadgetComponent);
                     }
                 }
             }
+        }
+
+        Debug.Log($"Active gadgets count: {activeGadgets.Count}");
+
+        if (activeGadgets.Count == 2)
+        {
+            List<int> indicesToRemove = new List<int>();
+            HashSet<int> uniqueComponentIds = new HashSet<int>();
+
+            foreach (GadgetComponent gadgetComponent in activeGadgets)
+            {
+                Debug.Log($"Found GadgetComponent with ID: {gadgetComponent.componentId}");
+                // Collect indices to remove
+                for (int i = Character.inventory.Count - 1; i >= 0; i--)
+                {
+                    GadgetComponent originalGadgetComponent = Character.inventory[i].GetComponent<GadgetComponent>();
+                    Debug.Log($"Original gadget check: {originalGadgetComponent.componentId} vs {gadgetComponent.componentId}");
+
+                    if (originalGadgetComponent != null && originalGadgetComponent.componentId == gadgetComponent.componentId)
+                    {
+                        if (!uniqueComponentIds.Contains(originalGadgetComponent.componentId))
+                        {
+                            indicesToRemove.Add(i);
+                            uniqueComponentIds.Add(originalGadgetComponent.componentId);
+                        }
+                        break;
+                    }
+                }
+
+                // Add the component value to the sum
+                sum += gadgetComponent.componentValue;
+                Debug.Log($"Added {gadgetComponent.componentValue} to sum. Current sum: {sum}");
+            }
+
+            // Remove collected indices
+            foreach (int index in indicesToRemove.OrderByDescending(i => i))
+            {
+                Debug.Log($"Removing GadgetComponent from Character.inventory at index {index}");
+                Character.inventory.RemoveAt(index);
+            }
+
+            // Close and reopen the door UI to refresh the inventory display
+            DoorTrigger trigger = doorTrigger.GetComponent<DoorTrigger>();
+            trigger.CloseDoorUI();
+            trigger.OpenDoorUI();
         }
 
         Debug.Log($"Sum of equation gadgets: {sum}");
@@ -181,6 +211,7 @@ public class Inventory : MonoBehaviour
                             slotGadgetComponent.componentValue = gadgetComponent.componentValue;
                             slotGadgetComponent.textMeshUI.text = gadgetComponent.componentValue.ToString();
                             slotGadgetComponent.spawnLocation = gadgetComponent.spawnLocation;
+                            slotGadgetComponent.componentId = gadgetComponent.componentId;
                             inventorySlots[i].SetActive(true);
                         }
                     }

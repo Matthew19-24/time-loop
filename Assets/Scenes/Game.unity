@@ -5071,7 +5071,7 @@ Transform:
   m_GameObject: {fileID: 408713766}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.31000134, z: 0}
+  m_LocalPosition: {x: 0, y: -1.06, z: 0}
   m_LocalScale: {x: 10, y: 9.666665, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5100,6 +5100,7 @@ MonoBehaviour:
   - {fileID: 949092142}
   - {fileID: 579109327}
   - {fileID: 1355785733}
+  doorTrigger: {fileID: 408713766}
 --- !u!114 &408713769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7342,6 +7343,7 @@ MonoBehaviour:
   - {fileID: 1305375880}
   - {fileID: 482291639}
   - {fileID: 832967136}
+  doorTrigger: {fileID: 0}
 --- !u!1 &613949315
 GameObject:
   m_ObjectHideFlags: 0
@@ -17889,6 +17891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 2119677156}
   inventorySlots: []
+  doorTrigger: {fileID: 0}
 --- !u!1 &1521673511
 GameObject:
   m_ObjectHideFlags: 0
@@ -23120,6 +23123,7 @@ MonoBehaviour:
   - {fileID: 1718929372}
   - {fileID: 2122260257}
   - {fileID: 1066123023}
+  doorTrigger: {fileID: 0}
 --- !u!1 &2042318313
 GameObject:
   m_ObjectHideFlags: 0

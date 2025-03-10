@@ -5,16 +5,17 @@ using UnityEngine;
 public class GadgetComponent : MonoBehaviour
 {
     private static int nextId = 0; // Static variable to keep track of the next ID
-    public int componentId; // Unique identifier for each GadgetComponent
+    public int componentId = -1; // Unique identifier for each GadgetComponent, default to -1
     public int componentValue;
     public Vector2 spawnLocation;
     public SpriteRenderer sprite;
     public TextMeshPro textMesh;
     public TextMeshProUGUI textMeshUI;
+    public int originalId;
 
     void Awake()
     {
-        componentId = nextId++; // Assign a unique ID and increment the static variable
+            componentId = nextId++; // Assign a unique ID and increment the static variable
     }
 
     void Start()
