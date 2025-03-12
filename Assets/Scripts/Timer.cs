@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
     public GameObject character;
     private float timer;
     public TextMeshProUGUI timerText; // Assign in Inspector
+    private bool isPaused = false; // Flag to check if the timer is paused
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if (timer > 0)
+        if (!isPaused && timer > 0)
         {
             timer -= Time.deltaTime;
             if (timer <= 0)
@@ -26,6 +27,16 @@ public class Timer : MonoBehaviour
             }
             UpdateTimerText();
         }
+    }
+
+    public void PauseTimer()
+    {
+        isPaused = true;
+    }
+
+    public void ResumeTimer()
+    {
+        isPaused = false;
     }
 
     void ResetGame()

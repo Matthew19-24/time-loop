@@ -9,6 +9,8 @@ TagManager:
   - KeyHole
   - Equation
   - Sum
+  - Win
+  - Joystick
   layers:
   - Default
   - TransparentFX

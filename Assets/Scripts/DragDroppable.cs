@@ -14,6 +14,7 @@ public class DragDroppableUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     private Canvas overrideCanvas; // Temporary canvas for sorting
     private Transform originalParent; // Store the original parent
     private Transform lastParent; // Store the last parent before dragging
+    public GameObject timer; // Assign the Timer GameObject in the Inspector
 
     private void Awake()
     {
@@ -74,16 +75,17 @@ public class DragDroppableUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         canvasGroup.alpha = 1f; // Restore transparency
         canvasGroup.blocksRaycasts = true; // Re-enable raycasts
 
-        // Check if the object is dropped on a "Slot" tagged object
+        // Check if the object is dropped on a valid target
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
         pointerEventData.position = eventData.position;
         List<RaycastResult> raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerEventData, raycastResults);
 
-        bool droppedInSlot = false;
+        bool droppedInValidTarget = false;
         foreach (RaycastResult result in raycastResults)
         {
-            if (result.gameObject.CompareTag("Slot") || result.gameObject.CompareTag("Equation") || result.gameObject.CompareTag("Sum") || result.gameObject.CompareTag("KeyHole"))
+            if ((originalParent.CompareTag("Slot") && (result.gameObject.CompareTag("Equation") || result.gameObject.CompareTag("KeyHole"))) ||
+                (result.gameObject.CompareTag("Slot") || result.gameObject.CompareTag("Equation") || result.gameObject.CompareTag("Sum") || result.gameObject.CompareTag("KeyHole")))
             {
                 // Center the object in the slot
                 RectTransform slotRectTransform = result.gameObject.GetComponent<RectTransform>();
@@ -103,14 +105,55 @@ public class DragDroppableUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 rectTransform.SetParent(slotRectTransform);
                 rectTransform.anchoredPosition = Vector2.zero;
                 rectTransform.SetSiblingIndex(slotRectTransform.childCount - 1); // Ensure the gadget is on top
-                droppedInSlot = true;
+                droppedInValidTarget = true;
+
+                // Check if the dropped slot was a 'KeyHole' slot
+                if (result.gameObject.CompareTag("KeyHole"))
+                {
+                    GadgetComponent gadgetComponent = GetComponent<GadgetComponent>();
+                    if (gadgetComponent != null && gadgetComponent.componentValue == Character.winScore)
+                    {
+                        // Add your win game logic here
+                        Debug.Log("Win condition met!");
+                        if (timer != null)
+                        {
+                            Timer timerComponent = timer.GetComponent<Timer>();
+                            if (timerComponent != null)
+                            {
+                                timerComponent.PauseTimer();
+                            }
+                        }
+                        GameObject winObject = FindInactiveObjectByTag("Win");
+                        if (winObject != null)
+                        {
+                            Debug.Log("Activating Win object");
+                            winObject.SetActive(true);
+                        }
+                        else
+                        {
+                            Debug.LogError("Win object not found");
+                        }
+
+                        GameObject joystick = GameObject.FindGameObjectWithTag("Joystick");
+                        if (joystick != null)
+                        {
+                            Debug.Log("Deactivating Joystick object");
+                            joystick.SetActive(false);
+                        }
+                        else
+                        {
+                            Debug.LogError("Joystick object not found");
+                        }
+                    }
+                }
+
                 break;
             }
         }
 
-        if (!droppedInSlot)
+        if (!droppedInValidTarget)
         {
-            // Reset position to the original position if not dropped in a slot
+            // Reset position to the original position if not dropped in a valid target
             rectTransform.SetParent(originalParent);
             rectTransform.anchoredPosition = originalPosition;
         }
@@ -133,5 +176,18 @@ public class DragDroppableUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             rectTransform.SetParent(originalParent);
             rectTransform.anchoredPosition = originalPosition;
         }
+    }
+
+    private GameObject FindInactiveObjectByTag(string tag)
+    {
+        GameObject[] objects = Resources.FindObjectsOfTypeAll<GameObject>();
+        foreach (GameObject obj in objects)
+        {
+            if (obj.CompareTag(tag) && !obj.activeInHierarchy)
+            {
+                return obj;
+            }
+        }
+        return null;
     }
 }

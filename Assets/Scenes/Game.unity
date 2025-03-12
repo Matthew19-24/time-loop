@@ -488,6 +488,8 @@ GameObject:
   m_Component:
   - component: {fileID: 42495287}
   - component: {fileID: 42495288}
+  - component: {fileID: 42495290}
+  - component: {fileID: 42495289}
   m_Layer: 5
   m_Name: Equals
   m_TagString: Untagged
@@ -556,7 +558,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 42495289}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -572,6 +574,44 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &42495289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42495286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.34901962, g: 0.4745098, b: 0.6745098, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &42495290
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42495286}
+  m_CullTransparentMesh: 1
 --- !u!1 &56317150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1164,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1667914934}
+  originalId: 0
 --- !u!1971053207 &79713430
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -1420,6 +1461,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 581403734}
+  originalId: 0
 --- !u!1971053207 &87848545
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -2698,6 +2740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 0}
 --- !u!114 &189767765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2716,6 +2759,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1980458391}
+  originalId: 0
 --- !u!1971053207 &189767766
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -3050,6 +3094,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1525821655}
+  originalId: 0
 --- !u!1971053207 &203996012
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -3226,6 +3271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!1 &204856928
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,6 +3380,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 1829003954}
   textMeshUI: {fileID: 0}
+  originalId: 0
 --- !u!61 &204856932
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4412,6 +4459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 0}
 --- !u!114 &307027087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4430,6 +4478,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1685564791}
+  originalId: 0
 --- !u!1971053207 &307027088
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -4873,6 +4922,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 192315168}
+  originalId: 0
 --- !u!1971053207 &364213103
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -5071,8 +5121,8 @@ Transform:
   m_GameObject: {fileID: 408713766}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.06, z: 0}
-  m_LocalScale: {x: 10, y: 9.666665, z: 1}
+  m_LocalPosition: {x: 0, y: -1.3, z: 0}
+  m_LocalScale: {x: 10.16, y: 7.82, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 517598991}
@@ -5101,6 +5151,12 @@ MonoBehaviour:
   - {fileID: 579109327}
   - {fileID: 1355785733}
   doorTrigger: {fileID: 408713766}
+  sprites:
+  - {fileID: -473253793, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  - {fileID: 79209494, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  - {fileID: -963367924, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  - {fileID: 507577078, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  componentPrefab: {fileID: 204856928}
 --- !u!114 &408713769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5289,6 +5345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!114 &413983250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5307,6 +5364,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 645441665}
+  originalId: 0
 --- !u!1971053207 &413983251
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -5412,7 +5470,7 @@ GameObject:
   - component: {fileID: 462509057}
   m_Layer: 5
   m_Name: Win
-  m_TagString: Untagged
+  m_TagString: Win
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5433,8 +5491,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000045776, y: -0.000019073}
-  m_SizeDelta: {x: 872.679, y: 305.097}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &462509057
 MonoBehaviour:
@@ -5480,13 +5538,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2042318319}
+        m_TargetAssemblyTypeName: Character, Assembly-CSharp
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5512,7 +5570,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1729719297216764252, guid: 52ff0af8370d0f35696c494dff652103, type: 3}
+  m_Sprite: {fileID: 846439721, guid: 156ec492e516ccb4099add479601d65e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5840,6 +5898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!114 &482291644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5858,6 +5917,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1759712944}
+  originalId: 0
 --- !u!1971053207 &482291645
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -6868,6 +6928,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1340814283}
+  originalId: 0
 --- !u!1971053207 &579109330
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -7044,6 +7105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!1 &581403731
 GameObject:
   m_ObjectHideFlags: 0
@@ -7344,6 +7406,8 @@ MonoBehaviour:
   - {fileID: 482291639}
   - {fileID: 832967136}
   doorTrigger: {fileID: 0}
+  sprites: []
+  componentPrefab: {fileID: 0}
 --- !u!1 &613949315
 GameObject:
   m_ObjectHideFlags: 0
@@ -9811,6 +9875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!114 &832967141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9829,6 +9894,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 315115576}
+  originalId: 0
 --- !u!1971053207 &832967142
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -10156,6 +10222,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 934146617}
+  originalId: 0
 --- !u!1971053207 &866476752
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -10863,6 +10930,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 787676238}
+  originalId: 0
 --- !u!1971053207 &949092145
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -11039,6 +11107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!1 &949101713
 GameObject:
   m_ObjectHideFlags: 0
@@ -11478,6 +11547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!114 &956404850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11496,6 +11566,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1001697548}
+  originalId: 0
 --- !u!1971053207 &956404851
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -12479,6 +12550,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fixed Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773939, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12812,6 +12887,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 187353455}
+  originalId: 0
 --- !u!1971053207 &1066123026
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -12964,6 +13040,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 106114700}
+  originalId: 0
 --- !u!1971053207 &1073384111
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -13140,6 +13217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!1 &1078540513
 GameObject:
   m_ObjectHideFlags: 0
@@ -13201,6 +13279,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 220168123}
+  originalId: 0
 --- !u!1971053207 &1078540516
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -13377,6 +13456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!1 &1109773329
 GameObject:
   m_ObjectHideFlags: 0
@@ -14194,6 +14274,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1521673514}
+  originalId: 0
 --- !u!1971053207 &1166716833
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -14370,6 +14451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!1 &1203790941
 GameObject:
   m_ObjectHideFlags: 0
@@ -14498,6 +14580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!114 &1203790946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14516,6 +14599,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1737814962}
+  originalId: 0
 --- !u!1971053207 &1203790947
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -14625,7 +14709,7 @@ GameObject:
   - component: {fileID: 1241335324}
   m_Layer: 5
   m_Name: Component
-  m_TagString: Untagged
+  m_TagString: Gadget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14735,6 +14819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 0}
 --- !u!114 &1241335327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14753,6 +14838,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 957817463}
+  originalId: 0
 --- !u!1971053207 &1241335328
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -15353,6 +15439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!114 &1305375885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15371,6 +15458,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1281771000}
+  originalId: 0
 --- !u!1971053207 &1305375886
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -16287,6 +16375,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 671654214}
+  originalId: 0
 --- !u!1971053207 &1355785736
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -16463,6 +16552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!1 &1379747878
 GameObject:
   m_ObjectHideFlags: 0
@@ -17291,6 +17381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!114 &1481578356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17309,6 +17400,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1030243813}
+  originalId: 0
 --- !u!1971053207 &1481578357
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -17495,7 +17587,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1037503015}
-  - {fileID: 462509056}
   - {fileID: 624610544}
   - {fileID: 1634252055}
   - {fileID: 2008348927}
@@ -17503,6 +17594,7 @@ RectTransform:
   - {fileID: 1123660907}
   - {fileID: 1551695625}
   - {fileID: 97654437}
+  - {fileID: 462509056}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -17892,6 +17984,8 @@ MonoBehaviour:
   sound: {fileID: 2119677156}
   inventorySlots: []
   doorTrigger: {fileID: 0}
+  sprites: []
+  componentPrefab: {fileID: 0}
 --- !u!1 &1521673511
 GameObject:
   m_ObjectHideFlags: 0
@@ -18384,6 +18478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!114 &1532706204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18402,6 +18497,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 613949318}
+  originalId: 0
 --- !u!1971053207 &1532706205
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -19017,6 +19113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!114 &1605683584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19035,6 +19132,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 462595291}
+  originalId: 0
 --- !u!1971053207 &1605683585
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -20052,6 +20150,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 1471807969}
+  originalId: 0
 --- !u!1971053207 &1718929375
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -20201,6 +20300,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 577257353}
+  originalId: 0
 --- !u!1971053207 &1730095186
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -20532,6 +20632,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 566951040}
+  originalId: 0
 --- !u!1971053207 &1753344391
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -20940,6 +21041,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 56317153}
+  originalId: 0
 --- !u!1971053207 &1805830246
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -22153,6 +22255,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 949101716}
+  originalId: 0
 --- !u!1971053207 &1940768715
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -22256,6 +22359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!50 &1940768719
 Rigidbody2D:
   serializedVersion: 5
@@ -23124,6 +23228,8 @@ MonoBehaviour:
   - {fileID: 2122260257}
   - {fileID: 1066123023}
   doorTrigger: {fileID: 0}
+  sprites: []
+  componentPrefab: {fileID: 0}
 --- !u!1 &2042318313
 GameObject:
   m_ObjectHideFlags: 0
@@ -23226,7 +23332,7 @@ Transform:
   m_GameObject: {fileID: 2042318313}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 25.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23598,6 +23704,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 18262027}
+  originalId: 0
 --- !u!1971053207 &2122260260
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -23927,6 +24034,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   textMesh: {fileID: 0}
   textMeshUI: {fileID: 162260226}
+  originalId: 0
 --- !u!1971053207 &2143271120
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -24103,6 +24211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eeb80f0160c2ee70860d06df770d8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 624610543}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

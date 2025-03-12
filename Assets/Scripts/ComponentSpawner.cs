@@ -150,6 +150,35 @@ public class ComponentSpawner : MonoBehaviour
             Debug.LogError("BoxCollider not found on component.");
         }
     }
+
+    public Sprite RandomSprite()
+    {
+        return sprites[Random.Range(0, sprites.Length)];
+    }
+
+    public static GameObject CreateGadgetComponent(GameObject componentPrefab, int componentValue, Sprite sprites, int componentId)
+    {
+    // Instantiate the componentPrefab without setting its position
+    GameObject newComponent = Instantiate(componentPrefab);
+    newComponent.SetActive(false); // Deactivate it to prevent it from appearing in the scene
+
+    GadgetComponent gadgetComponent = newComponent.GetComponent<GadgetComponent>();
+    if (gadgetComponent != null)
+    {
+        gadgetComponent.componentValue = componentValue;
+        gadgetComponent.componentId = componentId;
+
+        // Randomly assign one of the sprites from the sprite array
+        SpriteRenderer spriteRenderer = gadgetComponent.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprites;
+    }
+    else
+    {
+        Debug.LogError("Gadget component not found on instantiated gadget.");
+    }
+
+    return newComponent;
+}
 }
 
 public class GadgetInfo
@@ -164,4 +193,7 @@ public class GadgetInfo
         this.componentValue = componentValue;
         this.sprite = sprite;
     }
+
+    
+
 }

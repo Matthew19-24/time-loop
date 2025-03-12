@@ -8,6 +8,10 @@ public class Inventory : MonoBehaviour
     public AudioSource sound;
     public GameObject[] inventorySlots;
     public GameObject doorTrigger;
+    public Sprite[] sprites;
+    public GameObject componentPrefab;
+
+
 
     void Start()
     {
@@ -59,6 +63,7 @@ public class Inventory : MonoBehaviour
                         {
                             slotGadgetComponent.sprite = gadgetComponent.sprite;
                             slotImage.sprite = spriteRenderer.sprite;
+                            Debug.Log($"Assigned sprite {spriteRenderer.sprite.name} to inventory slot {i}");
                             slotGadgetComponent.componentValue = gadgetComponent.componentValue;
                             slotGadgetComponent.textMeshUI.text = gadgetComponent.componentValue.ToString();
                             slotGadgetComponent.spawnLocation = gadgetComponent.spawnLocation;
@@ -88,6 +93,22 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        // Activate the child object with the tag "Gadget" of the GameObject with the tag "Sum"
+        GameObject[] sumObjects = GameObject.FindGameObjectsWithTag("Sum");
+        foreach (GameObject sumObject in sumObjects)
+        {
+            Transform componentTransform = sumObject.transform.Find("Component");
+            if (componentTransform != null && componentTransform.CompareTag("Gadget"))
+            {
+                componentTransform.gameObject.SetActive(false);
+                Debug.Log($"Activated Component child {componentTransform.name} with tag Gadget in sum object {sumObject.name}");
+            }
+            else
+            {
+                Debug.LogError($"Component child with tag Gadget not found in sum object: {sumObject.name}");
+            }
+        }
+
         int musicPref = PlayerPrefs.GetInt("Sound", 1); // Default to 1 (true) if not set
         if (musicPref == 1 && sound != null)
         {
@@ -101,6 +122,22 @@ public class Inventory : MonoBehaviour
         if (musicPref == 1 && sound != null)
         {
             sound.Play();
+        }
+
+        // Deactivate the child object with the tag "Gadget" of the GameObject with the tag "Sum"
+        GameObject[] sumObjects = GameObject.FindGameObjectsWithTag("Sum");
+        foreach (GameObject sumObject in sumObjects)
+        {
+            Transform componentTransform = sumObject.transform.Find("Component");
+            if (componentTransform != null && componentTransform.CompareTag("Gadget"))
+            {
+                componentTransform.gameObject.SetActive(false);
+                Debug.Log($"Deactivated Component child {componentTransform.name} with tag Gadget in sum object {sumObject.name}");
+            }
+            else
+            {
+                Debug.LogError($"Component child with tag Gadget not found in sum object: {sumObject.name}");
+            }
         }
     }
 
@@ -174,12 +211,61 @@ public class Inventory : MonoBehaviour
             DoorTrigger trigger = doorTrigger.GetComponent<DoorTrigger>();
             trigger.CloseDoorUI();
             trigger.OpenDoorUI();
+
+            // I'm looking here
+            Debug.Log($"Sum of equation gadgets: {sum}");
+            GameObject[] sumObjects = GameObject.FindGameObjectsWithTag("Sum");
+            foreach (GameObject sumObject in sumObjects)
+            {
+                Debug.Log($"Processing sum object: {sumObject.name}");
+                Transform componentTransform = sumObject.transform.Find("Component");
+                if (componentTransform != null && componentTransform.CompareTag("Gadget"))
+                {
+                    Debug.Log($"Found Component child with tag Gadget: {componentTransform.name}");
+                    GadgetComponent sumComponent = componentTransform.GetComponent<GadgetComponent>();
+                    Sprite assignedSprite = sprites[UnityEngine.Random.Range(0, sprites.Length)];
+
+                    if (sumComponent != null)
+                    {
+                        sumComponent.componentValue = sum;
+                        if (sumComponent.textMeshUI != null)
+                        {
+                            sumComponent.textMeshUI.text = sum.ToString();
+                        }
+                        if (sumComponent.sprite != null)
+                        {
+                            sumComponent.sprite.sprite = assignedSprite;
+                        }
+                        Image slotImage = sumComponent.GetComponent<Image>();
+                        slotImage.sprite = assignedSprite;
+
+                        sumComponent.componentId = GadgetComponent.nextId++;
+                        componentTransform.localPosition = Vector3.zero; // Set position to (0, 0)
+                        Debug.Log($"Setting Component child {componentTransform.name} active.");
+                        componentTransform.gameObject.SetActive(true);
+
+                        GameObject newGadget = ComponentSpawner.CreateGadgetComponent(componentPrefab, sum, assignedSprite, sumComponent.componentId);
+                        SpriteRenderer newGadgetSpriteRenderer = newGadget.GetComponent<SpriteRenderer>();
+                        if (newGadgetSpriteRenderer != null)
+                        {
+                            newGadgetSpriteRenderer.sprite = assignedSprite; // Ensure the sprite is assigned
+                            Debug.Log($"Assigned sprite {assignedSprite.name} to new gadget");
+                        }
+                        Character.inventory.Add(newGadget);
+                    }
+                    else
+                    {
+                        Debug.LogError($"GadgetComponent not found on Component child: {componentTransform.name}");
+                    }
+                }
+                else
+                {
+                    Debug.LogError($"Component child with tag Gadget not found in sum object: {sumObject.name}");
+                }
+                Debug.Log($"Setting sum object {sumObject.name} active.");
+                sumObject.SetActive(true);
+            }
         }
-
-        Debug.Log($"Sum of equation gadgets: {sum}");
-
-        // Update the inventory display
-        UpdateInventoryDisplay();
     }
 
     private void UpdateInventoryDisplay()
@@ -207,7 +293,8 @@ public class Inventory : MonoBehaviour
                         if (slotGadgetComponent != null && slotImage != null)
                         {
                             slotGadgetComponent.sprite = gadgetComponent.sprite;
-                            slotImage.sprite = spriteRenderer.sprite;
+                            slotImage.sprite = spriteRenderer.sprite; // Ensure the sprite is assigned
+                            Debug.Log($"Assigned sprite {spriteRenderer.sprite.name} to inventory slot {i}");
                             slotGadgetComponent.componentValue = gadgetComponent.componentValue;
                             slotGadgetComponent.textMeshUI.text = gadgetComponent.componentValue.ToString();
                             slotGadgetComponent.spawnLocation = gadgetComponent.spawnLocation;

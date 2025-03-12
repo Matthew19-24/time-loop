@@ -251,4 +251,14 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void NextLevel()
+    {
+        // Increase the winScore by a random number between 1 and 3
+        winScore += Random.Range(1, 4);
+        inventory = new List<GameObject>();
+
+        // Restart the scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }

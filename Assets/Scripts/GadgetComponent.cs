@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GadgetComponent : MonoBehaviour
 {
-    private static int nextId = 0; // Static variable to keep track of the next ID
+    public static int nextId = 0; // Static variable to keep track of the next ID
     public int componentId = -1; // Unique identifier for each GadgetComponent, default to -1
     public int componentValue;
     public Vector2 spawnLocation;
@@ -34,4 +34,6 @@ public class GadgetComponent : MonoBehaviour
     {
         throw new NotImplementedException();
     }
+
+
 }
